@@ -1,34 +1,50 @@
 # Set the radio group for communication
 radio.set_group(1)
 radio.set_transmit_power(1)
+
+# Set Touch config?
+pins.touch_set_mode(TouchTarget.LOGO, TouchTargetMode.RESISTIVE)
+
+# Constants
 MILLISECONDS = 1000
 
 class Alarm:
 
     def __init__(self):
         self.hours = 0
+        self.game_mode = 1
         self.set_handlers()
 
-    # Send request to start the game on another micro:bit
+    # Send request to start the maze game on another micro:bit
     def send_radio_request_for_game(self):
         radio.send_string("reqGame")
+
+    # Send request to start the flappybird game on another micro:bit
+    def send_radio_request_for_game2(self):
+        radio.send_string("reqGame2")
 
     # Send request to check light and start logging
     def send_radio_request_for_light_and_datalogger(self):
         radio.send_string("reqLight")
 
+    # Send request to make user put the other micro:bit straight
     def send_radio_request_for_orientation(self):
         radio.send_string("reqOri")
 
+    # Send request to stop light and logging data
     def stop_light_and_data_logging(self):
         radio.send_string("reqLightGameFinish")
 
-    # Set event handlers
+    # Set Event Handlers
     def set_handlers(self):
+
+        ## Set Touch Utils 
+        def on_logo_pressed():
+            self.game_mode = 2 if self.game_mode == 1 else 1
 
         ## Set Radio Utils
         def set_radio_receive(receivedString):
-            if receivedString == "resGame":
+            if receivedString == "resGame" or receivedString == "resGame2":
                 '''
                 Send request to check orientation 
                 to make sure user put it straight
@@ -56,10 +72,12 @@ class Alarm:
                 basic.clear_screen()
             self.play_alarm()
 
-        # Set radio and button event handlers
+        # Set radio event handler, button event handlers 
+        # and touch event handler
         input.on_button_pressed(Button.A, on_button_pressed_a)
         input.on_button_pressed(Button.B, on_button_pressed_b)
         radio.on_received_string(set_radio_receive)
+        input.on_logo_event(TouchButtonEvent.PRESSED, on_logo_pressed)
 
     # Stop the alarm sound
     def off_alarm(self):
@@ -68,8 +86,13 @@ class Alarm:
     # Play alarm sound
     def play_alarm(self):
         # After alarm, request the game to start
-        self.send_radio_request_for_game()
+        if self.game_mode == 1:
+            self.send_radio_request_for_game()
+        else:
+            self.send_radio_request_for_game2()
         self.send_radio_request_for_light_and_datalogger()
+
+        # Start Melody
         music.set_volume(255)
         music.start_melody(music.built_in_melody(Melodies.POWER_UP), MelodyOptions.FOREVER_IN_BACKGROUND)
         basic.show_icon(IconNames.SAD)
