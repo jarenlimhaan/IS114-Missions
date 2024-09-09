@@ -26,5 +26,6 @@ class DisplayOrientation:
                 self.send_radio_request_for_done_checking_orientation()
             # Pause to update every half second
             basic.pause(100)
+            break
 
 init_displayOrientation = DisplayOrientation()
