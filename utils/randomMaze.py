@@ -10,5 +10,4 @@ def generateRandomMaze():
                 # Randomly assign 0 (path) or 1 (wall)
                 mazeRow.append(0 if Math.random() < 0.5 else 1)
         maze.append(mazeRow)
-        print(mazeRow)
     return maze

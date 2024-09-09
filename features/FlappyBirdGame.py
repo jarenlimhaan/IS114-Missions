@@ -33,7 +33,8 @@ def remove_offscreen_columns():
 empty_column_y = 0
 bird: game.LedSprite = None
 obstacles: List[game.LedSprite] = []
-bird = None
+bird = game.create_sprite(0, 2)
+bird.set(LedSpriteProperty.BLINK, 300)
 n = 5
 games_played = 0
 
@@ -64,10 +65,8 @@ def set_radio_receive(receivedString):
         '''
         Send request to check orientation
         to make sure user put it straight
-        '''  
+        '''
         # Start the game loop
-        bird = game.create_sprite(0, 2)
-        bird.set(LedSpriteProperty.BLINK, 300)
         main_game_loop()
 
 radio.on_received_string(set_radio_receive)

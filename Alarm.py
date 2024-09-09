@@ -23,17 +23,17 @@ class Alarm:
     def send_radio_request_for_game2(self):
         radio.send_string("reqGame2")
 
-    # Send request to check light and start logging
-    def send_radio_request_for_light_and_datalogger(self):
-        radio.send_string("reqLight")
+    # Send request to start logging time 
+    def send_radio_request_for_datalogger(self):
+        radio.send_string("reqData")
 
     # Send request to make user put the other micro:bit straight
     def send_radio_request_for_orientation(self):
-        radio.send_string("reqOri")
+        radio.send_string("req")
 
-    # Send request to stop light and logging data
-    def stop_light_and_data_logging(self):
-        radio.send_string("reqLightGameFinish")
+    # Send request to stop logging time data
+    def stop_data_logging(self):
+        radio.send_string("reqDataGameFinish")
 
     # Set Event Handlers
     def set_handlers(self):
@@ -49,13 +49,13 @@ class Alarm:
                 Send request to check orientation 
                 to make sure user put it straight
                 '''
-                self.send_radio_request_for_orientation
-            if receivedString == "resOri":
+                self.send_radio_request_for_orientation()
+            if receivedString == "res":
                 '''
-                Stop the logging of light and data 
+                Stop the logging of time data 
                 and off the alarm 
                 '''
-                self.stop_light_and_data_logging()
+                self.stop_data_logging()
                 self.off_alarm()
 
         ## Set Timer Utils 
@@ -90,7 +90,7 @@ class Alarm:
             self.send_radio_request_for_game()
         else:
             self.send_radio_request_for_game2()
-        self.send_radio_request_for_light_and_datalogger()
+        self.send_radio_request_for_datalogger()
 
         # Start Melody
         music.set_volume(255)

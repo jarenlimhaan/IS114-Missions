@@ -3,11 +3,10 @@ radio.set_group(1)
 radio.set_transmit_power(1)
 
 # Initialize datalogger
-datalogger.set_column_titles("Time", "Light Level")  # Set datalogger headers
+datalogger.set_column_titles("Time")  # Set datalogger headers
 
-class LightSensorAndLogger:
+class DataLogger:
     def __init__(self):
-        self.light_threshold = 50
         self.running = False
         self.seconds = 0
         self.set_handlers()
@@ -16,10 +15,10 @@ class LightSensorAndLogger:
 
         # Radio receive handler
         def on_received_string(receivedString):
-            if receivedString == "reqLight":
+            if receivedString == "reqData":
                 self.running = True
-                self.log_time_and_light()
-            if receivedString == "reqLightGameFinish":
+                self.log_time()
+            if receivedString == "reqDataGameFinish":
                 self.running = False
                 basic.show_number(self.seconds)  # Show final time
         
@@ -36,18 +35,13 @@ class LightSensorAndLogger:
         input.on_button_pressed(Button.B, on_button_pressed_b)
         radio.on_received_string(on_received_string)
 
-    # Continuous logging of time and light level
-    def log_time_and_light(self):
+    def log_time(self):
         while True:
             if self.running:
                 # Increment time every second
                 basic.pause(1000)
                 self.seconds += 1
                 
-                # Check the current light level
-                light_level = input.light_level()
-                
-                # Log both time and light level continuously
-                datalogger.log(datalogger.create_cv("Time", self.seconds), datalogger.create_cv("Light Level", light_level))
+                datalogger.log(datalogger.create_cv("Time", self.seconds))
 
-init_lightSensorAndLogger = LightSensorAndLogger()
+init_DataLogger = DataLogger()
