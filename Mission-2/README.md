@@ -21,6 +21,7 @@ To set up the project, follow these steps:
 2. **Install dependencies**:
    Run the following command to install the project dependencies:
    ```bash
+   cd Mission-2
    poetry install
    ```
 
