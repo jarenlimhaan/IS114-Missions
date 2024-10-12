@@ -1,0 +1,92 @@
+{% include "layouts/base.html" %} {% block content %}
+<style>
+  .div {
+    background: rgba(0, 0, 0, 0);
+    width: 100%;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    padding: 30px 30px 10px;
+    box-shadow: 0 0 150px -20px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+  }
+
+  P {
+    font-family: "Share Tech Mono", monospace;
+    color: #f5f5f5;
+    margin: 0 0 20px;
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  span {
+    color: #f0c674;
+  }
+
+  i {
+    color: #8abeb7;
+  }
+
+  div a {
+    text-decoration: none;
+  }
+
+  b {
+    color: #81a2be;
+  }
+
+  @keyframes slide {
+    from {
+      right: -100px;
+      transform: rotate(360deg);
+      opacity: 0;
+    }
+    to {
+      right: 15px;
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+  }
+</style>
+<div class="main-container">
+  <div class="main-header anim" style="--delay: 0s">About SHAS</div>
+  <div class="div">
+    <p><span>SMART DEVICE</span>: "<i>SHAS</i>"</p>
+    <p>
+      <span>TARGET AUDIENCE</span>: "<i>Our primary audience includes individuals who utilize short-term overnight facilities, such as Safe Sound Sleeping Places (S3P). These accommodations often enforce strict morning vacate times, making it essential for users to wake up promptly.</i>"
+    </p>
+    <p>
+      <span>DESCRIPTION</span>: [<b
+        >The Smart Home Alarm System, or SHAS, is a revolutionary alarm device designed specifically for rough sleepers. Unlike traditional alarms, SHAS offers a customizable wake-up schedule tailored to help users maintain a consistent daily routine.
+
+        Recognizing that establishing a reliable wake-up pattern can be tedious and challenging, we have integrated the concept of gamification—the application of game elements in non-game contexts. By incorporating engaging games, we provide users with intrinsic motivation to rise and shine each morning. To turn off the alarm, users must complete one of two interactive games: a Flappy Bird-style game or a maze challenge. This design ensures that users are fully awake and alert, as they must focus entirely to succeed in these games, preventing the alarm from being silenced prematurely.
+        
+        Additionally, SHAS features a built-in timer that logs the time taken from when the alarm sounds to when the user finishes the game. This data helps users track their wake-up habits daily, even amidst the varied environments in which they sleep.
+        
+        Through a gamified alarm system with multiple interactive features, SHAS empowers users to reshape their sleep habits progressively and enhance their overall well-being.</b
+      >]
+    </p
+    <p><span>HAVE A NICE DAY :></span></p>
+  </div>
+</div>
+
+{% endblock %}
+
+<script>
+  var str = document.getElementsByClassName("div")[0].innerHTML.toString();
+  var i = 0;
+  document.getElementsByClassName("div")[0].innerHTML = "";
+
+  setTimeout(function () {
+    var se = setInterval(function () {
+      i++;
+      document.getElementsByClassName("div")[0].innerHTML =
+        str.slice(0, i) + "|";
+      if (i == str.length) {
+        clearInterval(se);
+        document.getElementsByClassName("div")[0].innerHTML = str;
+      }
+    }, 1);
+  }, 0);
+</script>
