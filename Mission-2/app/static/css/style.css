@@ -368,8 +368,8 @@ button {
 
 .main-blog {
   background-image: url("../images/SHAS_Device.jpg");
-  background-size: 80%;
-  background-position-x: 150px;
+  background-size: 40%;
+  background-position-x: 300px;
   background-color: #31abbd;
   display: flex;
   flex-direction: column;
@@ -387,8 +387,8 @@ button {
   width: 35%;
   background-image: url("../images/Microbit.jpg");
   background-color: fi;
-  background-position-x: 0;
-  background-size: 120%;
+  background-position-x: 10px;
+  background-size: 85%;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
   filter: saturate(1.4);
 }
