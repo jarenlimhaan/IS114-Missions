@@ -31,6 +31,8 @@ def analytics():
             li.append(prev)
         prev = float(col[0])
 
-    return render_template('analytics.html', segment='analytics', li=li, labels = ['Day ' + str(i) for i in range(1,len(li)+1)])
+    
+
+    return render_template('analytics.html', segment='analytics', li=li[::-1], labels = ['Day ' + str(i) for i in range(1,len(li)+1)])
 
 

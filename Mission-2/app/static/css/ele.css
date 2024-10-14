@@ -10,7 +10,7 @@ main {
   height: 300px;
   list-style-type: none;
   position: absolute;
-  top: 50%;
+  top: -100%;
   transform: translateY(-50%);
   z-index: 1;
   background-position: center;
@@ -44,7 +44,7 @@ main {
   transform: translateY(-50%);
   font: 400 0.85rem helvetica,sans-serif;
   color: white;
-  text-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  /* text-shadow: 0 3px 8px rgba(0,0,0,0.5); */
   opacity: 0;
   display: none;
 
@@ -58,7 +58,7 @@ main {
     line-height: 1.7;
     margin: 1rem 0 1.5rem;
     font-size: 0.9rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    /* text-shadow: 2px 2px 4px rgba(0,0,0,0.8); */
   ;
   }
 
@@ -98,7 +98,7 @@ main {
   user-select: none;
 
   & .btn {
-    background-color: rgba(255,255,255,0.5);
+    background-color: white;
     color: rgba(0,0,0,0.7);
     border: 2px solid rgba(0,0,0,0.6);
     margin: 0 0.25rem;
@@ -107,7 +107,7 @@ main {
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(255,255,255,0.3);
+      background-color: white;
     }
   }
 }
