@@ -367,7 +367,7 @@ button {
 }
 
 .main-blog {
-  background-image: url("../images/banner.jpeg");
+  background-image: url("../images/SHAS_Device.jpg");
   background-size: 80%;
   background-position-x: 150px;
   background-color: #31abbd;
@@ -385,7 +385,7 @@ button {
 .main-blog + .main-blog {
   margin-left: 20px;
   width: 35%;
-  background-image: url("../images/banner2.png");
+  background-image: url("../images/Microbit.jpg");
   background-color: fi;
   background-position-x: 0;
   background-size: 120%;
